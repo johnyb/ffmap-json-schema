@@ -11,7 +11,7 @@ module.exports = function (grunt) {
                 options: {
                     root: grunt.file.readJSON('schema/ffmap.json')
                 },
-                src: 'examples/*.json'
+                src: ['spec/fixtures/**/*.json']
             }
         },
         tv4: {
@@ -25,7 +25,7 @@ module.exports = function (grunt) {
                 options: {
                     root: grunt.file.readJSON('schema/ffmap.json')
                 },
-                src: ['examples/*.json']
+                src: ['spec/fixtures/**/*.json']
             }
         }
     });
