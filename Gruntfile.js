@@ -27,6 +27,19 @@ module.exports = function (grunt) {
                 },
                 src: ['spec/fixtures/**/*.json']
             }
+        },
+        watch: {
+            sources: {
+                files: ['schema/*.json', 'spec/**/*.json'],
+                tasks: ['default']
+            },
+            config: {
+                options: {
+                    reload: true
+                },
+                files: ['Gruntfile.js'],
+                tasks: ['default']
+            }
         }
     });
 
@@ -63,6 +76,7 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-tv4');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['tv4', 'jsck']);
 };
