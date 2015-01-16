@@ -2,6 +2,9 @@
   "name": "ffmap-json-schema",
   "version": "0.0.1",
   "description": "A specification of FFMAP data using JSON Schema",
+  "repository": {
+    "url": "https://github.com/johnyb/ffmap-json-schema/"
+  },
   "scripts": {
     "test": "node -e \"require('grunt').cli()\""
   },
