@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A specification of FFMAP data using JSON Schema",
   "scripts": {
-    "test": "grunt"
+    "test": "node -e \"require('grunt').cli()\""
   },
   "author": "Julian Bäume <julian@svg4all.de>",
   "license": "MIT",
