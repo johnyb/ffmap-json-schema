@@ -1,0 +1,54 @@
+{
+    "timestamp": "2014-11-09T10:46:06",
+    "nodes": [
+        {
+            "id": "abcdef098765",
+            "nodeinfo": {
+                "network": {
+                    "mesh_interfaces": [],
+                    "mac": "ab:cd:ef:09:87:65",
+                    "addresses": []
+                }
+            },
+            "hostname": "jupiter",
+            "hardware": {
+                "model": "TP-Link TL-WR841N/ND v9"
+            },
+            "owner": {
+                "contact": "zeus@example.com"
+            },
+            "software": {
+                "batman-adv": {
+                    "compat": 14,
+                    "version": "2013.4.0"
+                },
+                "autoupdater": {
+                    "enabled": true,
+                    "branch": "beta"
+                },
+                "firmware": {
+                    "release": "2014.4-beta-1",
+                    "base": "gluon-v2014.3-107-g61346d1"
+                },
+                "fastd": {
+                    "version": "v14",
+                    "enabled": false
+                }
+            },
+            "statistics": {
+                "uptime": 50907.03,
+                "memory_usage": 0.8988218988218988,
+                "clients": 2,
+                "rootfs_usage": 0.3625,
+                "loadavg": 0.25,
+                "gateway": "sun"
+            },
+            "flags": {
+                "gateway": false,
+                "online": true
+            },
+            "lastseen": "2014-11-09T10:32:06",
+            "firstseen": "2014-11-09T10:32:06"
+        }
+    ]
+}
