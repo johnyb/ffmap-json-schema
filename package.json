@@ -5,15 +5,20 @@
   "repository": {
     "url": "https://github.com/johnyb/ffmap-json-schema/"
   },
+  "main": "index.js",
   "scripts": {
     "test": "node -e \"require('grunt').cli()\""
   },
   "author": "Julian Bäume <julian@svg4all.de>",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^1.10.0",
     "grunt": "^0.4.5",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-tv4": "^0.4.1",
+    "grunt-mocha-cli": "^1.12.0",
+    "grunt-tv4": "^0.4.1"
+  },
+  "dependencies": {
     "jsck": "^0.2.4"
   }
 }

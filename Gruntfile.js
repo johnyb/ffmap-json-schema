@@ -28,9 +28,19 @@ module.exports = function (grunt) {
                 src: ['spec/fixtures/**/*.json']
             }
         },
+        mochacli: {
+            spec: {
+                options: {
+                    reporter: 'spec'
+                },
+                files: [{
+                    src: ['spec/**/*_spec.js']
+                }]
+            }
+        },
         watch: {
             sources: {
-                files: ['schema/*.json', 'spec/**/*.json'],
+                files: ['schema/*.json', 'spec/**/*.json', 'index.js', 'spec/**/*.js'],
                 tasks: ['default']
             },
             config: {
@@ -76,7 +86,8 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-tv4');
+    grunt.loadNpmTasks('grunt-mocha-cli');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['tv4', 'jsck']);
+    grunt.registerTask('default', ['tv4', 'jsck', 'mochacli']);
 };
