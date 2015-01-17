@@ -9,12 +9,14 @@ describe('Validation API', function () {
     it('should provide a validate method', function () {
         expect(ffmap.validate).to.be.a('function');
     });
-    it('#validate should return an object', function () {
-        var res = ffmap.validate({});
+    describe('#validate', function () {
+        it('should return an object', function () {
+            var res = ffmap.validate({});
 
-        expect(res).to.have.a.property('valid');
-        expect(res.valid).to.be.a('boolean');
-        expect(res).to.have.a.property('errors');
-        expect(res.errors).to.be.an('array');
+            expect(res).to.have.a.property('valid');
+            expect(res.valid).to.be.a('boolean');
+            expect(res).to.have.a.property('errors');
+            expect(res.errors).to.be.an('array');
+        });
     });
 });
