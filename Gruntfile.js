@@ -76,7 +76,7 @@ module.exports = function (grunt) {
                     grunt.verbose.ok('Document valid:', file.src[index]);
                 } catch (e) {
                     grunt.log.error('validation failed:')
-                    grunt.log.error(JSON.stringify(json, null, 2));
+                    grunt.verbose.error(JSON.stringify(json, null, 2));
                     grunt.log.error(e.message);
                     grunt.fail.fatal('Schema validation failed');
                 }
