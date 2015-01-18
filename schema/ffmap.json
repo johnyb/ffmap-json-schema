@@ -3,16 +3,176 @@
     "title": "FFMAP",
     "description": "Information about (a part of) a Freifunk network",
     "type": "object",
-    "properties": {
-        "timestamp": {
-            "type": "string"
+    "definitions": {
+        "Node": {
+            "id": "urn:FFMap.Node#",
+            "description": "A node in the network",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "nodeinfo": {
+                    "type": "object",
+                    "properties": {
+                        "network": {
+                            "type": "object",
+                            "properties": {
+                                "mesh_interfaces": {
+                                    "type": "array"
+                                },
+                                "mac": {
+                                    "type": "string"
+                                },
+                                "addresses": {
+                                    "type": "array"
+                                }
+                            }
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string"
+                },
+                "hardware": {
+                    "type": "object",
+                    "properties": {
+                        "model": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "software": {
+                    "type": "object",
+                    "properties": {
+                        "batman-adv": {
+                            "type": "object",
+                            "properties": {
+                                "compat": {
+                                    "type": "number"
+                                },
+                                "version": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "autoupdater": {
+                            "type": "object",
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean"
+                                },
+                                "branch": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "firmware": {
+                            "type": "object",
+                            "properties": {
+                                "release": {
+                                    "type": "string"
+                                },
+                                "base": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "fastd": {
+                            "type": "object",
+                            "properties": {
+                                "version": {
+                                    "type": "string"
+                                },
+                                "enabled": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "statistics": {
+                    "type": "object",
+                    "properties": {
+                        "uptime": {
+                            "type": "number"
+                        },
+                        "memory_usage": {
+                            "type": "number"
+                        },
+                        "clients": {
+                            "type": "number"
+                        },
+                        "rootfs_usage": {
+                            "type": "number"
+                        },
+                        "loadavg": {
+                            "type": "number"
+                        },
+                        "gateway": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "flags": {
+                    "type": "object",
+                    "properties": {
+                        "gateway": {
+                            "type": "boolean"
+                        },
+                        "online": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "lastseen": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "firstseen": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "owner": {
+                    "type": "object",
+                    "properties": {
+                        "contact": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         },
-        "nodes": {
-            "type": "array"
-        },
-        "links": {
-            "type": "array"
+        "Link": {
+            "id": "urn:FFMap.Link",
+            "description": "A link between to Nodes",
+            "type": "object"
         }
     },
-    "required": ["timestamp"]
+    "properties": {
+        "meta": {
+            "type": "object",
+            "properties": {
+                "timestamp": {
+                    "description": "The timestamp when this network dump got generated (in date-time/ISO format, see RFC 3339, section 5.6).",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": ["timestamp"]
+        },
+        "nodes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Node"
+            }
+        },
+        "links": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Link"
+            }
+        }
+    },
+    "required": ["meta"]
 }

@@ -13,7 +13,9 @@ describe('Basic examples', function () {
     });
     it('should pass a minimal example', function () {
         var res = ffmap.validate({
-            timestamp: ''
+            meta: {
+                timestamp: '2014-11-09T10:46:06'
+            }
         });
 
         expect(res.valid).to.be.true;
