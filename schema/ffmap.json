@@ -1,12 +1,18 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "FFMAP",
+    "description": "Information about (a part of) a Freifunk network",
+    "type": "object",
     "properties": {
         "timestamp": {
             "type": "string"
         },
         "nodes": {
             "type": "array"
+        },
+        "links": {
+            "type": "array"
         }
-    }
+    },
+    "required": ["timestamp"]
 }
