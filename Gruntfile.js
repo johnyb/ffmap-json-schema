@@ -69,8 +69,8 @@ module.exports = function (grunt) {
                     var res = jsck.validate(json);
                     if (!res.valid && res.errors) {
                         grunt.log.error('validation failed');
-                        grunt.log.error(JSON.stringify(json, null, 2));
-                        grunt.log.error(res.errors.join('/n'));
+                        grunt.verbose.writeln(JSON.stringify(json, null, 2));
+                        grunt.log.error(JSON.stringify(res.errors, null, 2));
                         grunt.fail.fatal('Invalid document');
                     }
                     grunt.verbose.ok('Document valid:', file.src[index]);
