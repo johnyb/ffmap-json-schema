@@ -1,6 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "FFMAP",
+    "id": "urn:ffmap#",
     "description": "Information about (a part of) a Freifunk network",
     "type": "object",
     "definitions": {
@@ -145,8 +146,45 @@
         },
         "Link": {
             "id": "urn:FFMap.Link",
-            "description": "A link between to Nodes",
-            "type": "object"
+            "description": "A directed link between two Nodes",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "An optional id field for Links"
+                },
+                "quality": {
+                    "type": "number",
+                    "description": "Link quality for the link as seen from the source to the target node",
+                    "minimum": 0,
+                    "maximum": 1.0
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Node/id of the target node"
+                },
+                "source": {
+                    "type": "string",
+                    "description": "Node/id of the source node"
+                },
+                "geometry": {
+                    "description": "Optional geometry line object represented as GeoJSON#LineString",
+                    "properties": {
+                        "type": { "enum": [ "LineString" ] },
+                        "coordinates": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://json-schema.org/geojson/geometry.json#/definitions/lineString"
+                                },
+                                {
+                                    "maxItems": 2
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "required": ["quality", "target", "source"]
         }
     },
     "properties": {

@@ -9,7 +9,10 @@ module.exports = function (grunt) {
             },
             examples: {
                 options: {
-                    root: grunt.file.readJSON('schema/ffmap.json')
+                    root: grunt.file.readJSON('schema/ffmap.json'),
+                    schemas: {
+                        'http://json-schema.org/geojson/geometry.json': grunt.file.readJSON('schema/geojson/geometry.json')
+                    }
                 },
                 src: ['spec/fixtures/**/*.json']
             }
@@ -23,7 +26,10 @@ module.exports = function (grunt) {
             },
             examples: {
                 options: {
-                    root: grunt.file.readJSON('schema/ffmap.json')
+                    root: grunt.file.readJSON('schema/ffmap.json'),
+                    schemas: {
+                        'http://json-schema.org/geojson/geometry.json': grunt.file.readJSON('schema/geojson/geometry.json')
+                    }
                 },
                 src: ['spec/fixtures/**/*.json']
             }
@@ -55,7 +61,14 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('jsck', function () {
         var JSCK = require('jsck');
-        var schema = this.options().root || grunt.file.readJSON('schema/schema_draft4.json');
+        var rootSchema = this.options().root || grunt.file.readJSON('schema/schema_draft4.json');
+        var schemas = this.options().schemas || {};
+        var jsck = new JSCK.draft4({});
+        for (var id in schemas) {
+            jsck.add(schemas[id]);
+        }
+        //add root schema last, because it might reference others
+        jsck.add(rootSchema);
         this.files.forEach(function (file) {
             file.src.filter(function (f) {
                 return grunt.file.exists(f);
@@ -64,7 +77,6 @@ module.exports = function (grunt) {
                 return grunt.file.readJSON(f);
             })
             .forEach(function (json, index) {
-                var jsck = new JSCK.draft4(schema);
                 try {
                     var res = jsck.validate(json);
                     if (!res.valid && res.errors) {
