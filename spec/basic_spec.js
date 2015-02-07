@@ -11,13 +11,32 @@ describe('Basic examples', function () {
 
         expect(res.valid).to.be.false;
     });
-    it('should pass a minimal example', function () {
+    it('should not pass an example without meta property', function () {
         var res = ffmap.validate({
-            meta: {
-                timestamp: '2014-11-09T10:46:06'
+            no_meta: {
             }
         });
 
-        expect(res.valid).to.be.true;
+        expect(res.valid).to.be.false;
+    });
+    describe('minimal metadata', function () {
+        it('should pass a minimal example', function () {
+            var res = ffmap.validate({
+                meta: {
+                    timestamp: '2014-11-09T10:46:06'
+                }
+            });
+
+            expect(res.valid).to.be.true;
+        });
+        it('should not validate without timestamp', function () {
+            var res = ffmap.validate({
+                meta: {
+                    something: true
+                }
+            });
+
+            expect(res.valid).to.be.false;
+        });
     });
 });
